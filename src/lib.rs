@@ -55,6 +55,11 @@ pub trait ReadWrite {
         write_payload: &[u8],
         read_payload: &mut [u8],
     ) -> Result<(), Self::Error>;
+    
+    /// Enable the device for reading/writing
+    fn enable(
+        &mut self
+    ) -> Result<(), Self::Error>;
 }
 
 impl<SPI, CS, SpiE, PinE> ReadWrite for SpiInterface<SPI, CS>
